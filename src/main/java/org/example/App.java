@@ -1,43 +1,59 @@
 package org.example;
 
-import org.example.models.ModelContacto;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Hello world!
- */
 public class App {
 
     public static Scanner scannerInput = new Scanner(System.in);
-    public static ArrayList<ModelContacto> listasContactos = new ArrayList<>();
+    private static MLog mLog = new MLog();
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        boolean salir = false;
+        while (!salir) {
+            int opcion = mostrarOpciones();
+            switch (opcion) {
+                case 1:
+                   // verContactos();
+                    break;
+                case 2:
+                   // buscarContactos();
+                    break;
+                case 3:
+                  //  agregarContacto();
+                    break;
+                case 4:
+                  //  eliminarContacto();
+                    break;
+                case 5:
+                default:
+                    mLog.showOtherData("Gracias por utilizar la aplicacion!! Vuelve pronto!");
+                    salir = true;
+                    break;
+            }
+        }
     }
 
     private static int mostrarOpciones() {
         int capturarOpcion = 0;
 
         do {
-//            escribirConsola("""
-//                    +-----------------------------+
-//                    | Selecciona una operacion:   |
-//                    |   1)VER TODOS LOS CONTACTOS |
-//                    |   2)BUSCAR CONTACTO         |
-//                    |   3)AGREGAR CONTACTO        |
-//                    |   4)ELIMINAR CONTACTO       |
-//                    |   5)SALIR                   |
-//                    +-----------------------------+""");
-//
-//            verificarDatoEntrada();
-//            capturarOpcion = scannerInput.nextInt();
-//
-//            if (capturarOpcion > 5) {
-//                escribirConsola("\n[[ Opcion no encontrada ]]\n");
-//            } else if (capturarOpcion == 0) {
-//                escribirConsola("\n[[ Debes seleccionar solamente una opcion ]]\n");
-//            }
+            mLog.showMenu("+-----------------------------+ \n" +
+                    "| Selecciona una operacion:   |\n" +
+                    "|   1)VER TODOS LOS CONTACTOS |\n" +
+                    "|   2)BUSCAR CONTACTO         |\n" +
+                    "|   3)AGREGAR CONTACTO        |\n" +
+                    "|   4)ELIMINAR CONTACTO       |\n" +
+                    "|   5)SALIR                   |\n" +
+                    "+-----------------------------+\n");
+
+            verificarDatoEntrada();
+            capturarOpcion = scannerInput.nextInt();
+
+            if (capturarOpcion > 5) {
+                mLog.showOtherData("\n[[ Opcion no encontrada ]]\n");
+            } else if (capturarOpcion == 0) {
+                mLog.showOtherData("\n[[ Debes seleccionar solamente una opcion ]]\n");
+            }
 
         } while (capturarOpcion == 0 || capturarOpcion > 5);
 
@@ -46,79 +62,8 @@ public class App {
 
     private static void verificarDatoEntrada() {
         while (!scannerInput.hasNextInt()) {
-          //  escribirConsola("Ingresa un valor NUMERICO:");
+            mLog.showOtherData("Ingresa un valor NUMERICO:");
             scannerInput.next();
         }
-    }
-
-    public static ArrayList buscarContactos() {
-
-        scannerInput.nextLine();
-//        escribirConsola("-----------------------");
-//        escribirConsola("Escribe el nombre del contacto: ");
-        String nombreBuscar = scannerInput.nextLine();
-
-        ArrayList<ModelContacto> contactosEncontrados = new ArrayList<>();
-//        for (int i = 0; i < listasContactos.size(); i++) {
-//
-//            ModelContacto select = listasContactos.get(i);
-//            String nombreSeleccionado = select.getNombre().toLowerCase();
-//
-//            if (nombreSeleccionado.contains(nombreBuscar.toLowerCase())) {
-//                contactosEncontrados.add(select);
-//                escribirConsola("agrego a " + nombreSeleccionado + " id " + i);
-//            }
-//        }
-//
-//        if (!contactosEncontrados.isEmpty()) {
-//
-//            for (int i = 0; i < contactosEncontrados.size(
-//
-//            ); i++) {
-//
-//                ModelContacto seleccionado = contactosEncontrados.get(i);
-//
-//                escribirConsola("-----------------------");
-//                escribirConsola("- ID: " + i);
-//                escribirConsola("    " + seleccionado.getNombre());
-//                escribirConsola("    " + seleccionado.getTelefono());
-//                escribirConsola("-----------------------");
-//            }
-//
-//            contactosEncontrados.clear();
-//
-//        } else {
-//            escribirConsola("No encontramos contacto con ese nombre, prueba nuevamente...");
-//            buscarContactos();
-//        }
-        return contactosEncontrados;
-    }
-
-    public static void agregarContacto() {
-        scannerInput.nextLine();
-//        escribirConsola("Ingrese nombre del contacto");
-//        String name = scannerInput.nextLine();
-//        escribirConsola("Ingrese telefono del contacto");
-//        String cel = scannerInput.nextLine();
-//        listasContactos.add(new ModelContacto(name, cel));
-//        escribirConsola("contacto agregado");
-    }
-
-    public static void eliminarContacto() {
-        ArrayList contactosSeleccionados = buscarContactos();
-//
-//        escribirConsola("Ingrese en id del contacto a eliminar");
-//        verificarDatoEntrada();
-//        int id = scannerInput.nextInt();
-//
-//        if (id > contactosSeleccionados.size()) {
-//            escribirConsola("-----------------------");
-//            escribirConsola("has ingresado un valor no valido");
-//            escribirConsola("-----------------------");
-//
-//        } else {
-//            escribirConsola("has eliminado a " + listasContactos.get(id).getNombre());
-//            listasContactos.remove(id);
-//        }
     }
 }
